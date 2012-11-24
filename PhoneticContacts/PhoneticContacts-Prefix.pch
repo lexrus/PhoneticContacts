@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'PhoneticContacts' target in the 'PhoneticContacts' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
