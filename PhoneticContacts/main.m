@@ -9,10 +9,20 @@
 #import <Foundation/Foundation.h>
 #import <AddressBook/AddressBook.h>
 
+static NSString *upcaseInitial(NSString *sourceString) {
+    NSString *newString = [sourceString copy];
+    if ([sourceString length] > 0) {
+        newString = [[[sourceString substringToIndex:1] uppercaseString]
+                     stringByAppendingString:[sourceString substringFromIndex:1]];
+    }
+    
+    return newString;
+}
+
 static NSString *phonetic(NSString *sourceString) {
     NSMutableString *source = [sourceString mutableCopy];
     CFStringTransform((__bridge CFMutableStringRef)source, NULL, kCFStringTransformMandarinLatin, NO);
-    return source;
+    return upcaseInitial(source);
 }
 
 static NSString *kickNull(NSString *string) {
@@ -41,8 +51,8 @@ int main(int argc, const char * argv[])
             }
             [myContacts addObject:pinyin];
             printf("%s", [[NSString stringWithFormat:@"@%@%@=%@%@, ",
-                           kickNull(first), kickNull(last),
-                           phonetic(kickNull(first)), phonetic(kickNull(last))] UTF8String]);
+                           kickNull(last), kickNull(first),
+                           phonetic(kickNull(last)), phonetic(kickNull(first))] UTF8String]);
         }
         [ab save];
         
