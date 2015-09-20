@@ -15,14 +15,22 @@ static NSString *upcaseInitial(NSString *sourceString) {
         newString = [[[sourceString substringToIndex:1] uppercaseString]
                      stringByAppendingString:[sourceString substringFromIndex:1]];
     }
-    
+
     return newString;
 }
 
 static NSString *phonetic(NSString *sourceString) {
     NSMutableString *source = [sourceString mutableCopy];
     CFStringTransform((__bridge CFMutableStringRef)source, NULL, kCFStringTransformMandarinLatin, NO);
-    return upcaseInitial(source);
+
+    // Uncomment line below if you don't want the accents. E.g. Nín Hǎo v.s. Nin Hao
+    //CFStringTransform((__bridge CFMutableStringRef)source, NULL, kCFStringTransformStripCombiningMarks, NO);
+
+    if (![source isEqualToString:sourceString]) {
+        return upcaseInitial(source);
+    }
+
+    return NULL;
 }
 
 static NSString *kickNull(NSString *string) {
@@ -32,30 +40,31 @@ static NSString *kickNull(NSString *string) {
 
 int main(int argc, const char * argv[])
 {
-
     @autoreleasepool {
-        
         ABAddressBook *ab = [ABAddressBook addressBook];
-        NSMutableArray *myContacts = [NSMutableArray array];
         for (ABPerson *person in ab.people) {
             NSString *first = [person valueForProperty:kABFirstNameProperty];
+            NSString *pfirst = NULL;
+
             NSString *last = [person valueForProperty:kABLastNameProperty];
-            NSMutableString *pinyin = [NSMutableString string];
+            NSString *plast = NULL;
             if (first) {
-                [pinyin appendString:phonetic(first)];
-                [person setValue:phonetic(first) forProperty:kABFirstNamePhoneticProperty];
+                pfirst = phonetic(first);
+                if (pfirst) {
+                    [person setValue:pfirst forProperty:kABFirstNamePhoneticProperty];
+                }
             }
             if (last) {
-                [pinyin appendString:phonetic(last)];
-                [person setValue:phonetic(last) forProperty:kABLastNamePhoneticProperty];
+                plast = phonetic(last);
+                if (plast) {
+                    [person setValue:plast forProperty:kABLastNamePhoneticProperty];
+                }
             }
-            [myContacts addObject:pinyin];
             printf("%s", [[NSString stringWithFormat:@"@%@%@=%@%@, ",
                            kickNull(last), kickNull(first),
-                           phonetic(kickNull(last)), phonetic(kickNull(first))] UTF8String]);
+                           kickNull(plast), kickNull(pfirst)] UTF8String]);
         }
         [ab save];
-        
     }
     return 0;
 }
