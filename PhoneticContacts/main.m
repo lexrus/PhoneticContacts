@@ -23,11 +23,18 @@ static NSString *phonetic(NSString *sourceString) {
     NSMutableString *source = [sourceString mutableCopy];
     CFStringTransform((__bridge CFMutableStringRef)source, NULL, kCFStringTransformMandarinLatin, NO);
 
-    // Uncomment line below if you don't want the accents. E.g. Nín Hǎo v.s. Nin Hao
+    // Uncomment line below if you don't want the accents. E.g. NínHǎo to NinHao
     //CFStringTransform((__bridge CFMutableStringRef)source, NULL, kCFStringTransformStripCombiningMarks, NO);
 
     if (![source isEqualToString:sourceString]) {
-        return upcaseInitial(source);
+        if ([source rangeOfString:@" "].location != NSNotFound) {
+            NSArray<NSString *> *phoneticParts = [source componentsSeparatedByString:@" "];
+            source = [NSMutableString new];
+            for (NSString *part in phoneticParts) {
+                [source appendString:upcaseInitial(part)];
+            }
+        }
+        return [upcaseInitial(source) stringByReplacingOccurrencesOfString:@" " withString:@""];
     }
 
     return NULL;
