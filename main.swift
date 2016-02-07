@@ -91,7 +91,6 @@ extension String {
             "乐": "yue",
             "蔺": "lin",
             "隽": "juan",
-            "靳": "jin",
             "臧": "zang",
             "庾": "yu",
             "詹": "zhan",
