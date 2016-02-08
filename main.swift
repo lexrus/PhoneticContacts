@@ -86,7 +86,7 @@ extension String {
             "佟": "tong",
             "妫": "gui",
             "句": "gou",
-            "郝": "gao",
+            "郝": "hao",
             "曾": "zeng",
             "乐": "yue",
             "蔺": "lin",
