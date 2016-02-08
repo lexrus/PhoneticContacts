@@ -120,12 +120,20 @@ ab.people().forEach {
     }
 
     if let lastName = people.valueForProperty(kABLastNameProperty) as? String {
-        people.setValue(lastName.phoneticLast().phonetic(), forProperty: kABLastNamePhoneticProperty)
+        _ = try? people.setValue(
+            lastName.phoneticLast().phonetic(),
+            forProperty: kABLastNamePhoneticProperty,
+            error: ()
+        )
         print(lastName, lastName.phoneticLast().phonetic(), separator: "->", terminator: ", ")
     }
 
     if let firstName = people.valueForProperty(kABFirstNameProperty) as? String {
-        people.setValue(firstName.phonetic(), forProperty: kABFirstNamePhoneticProperty)
+        _ = try? people.setValue(
+            firstName.phonetic(),
+            forProperty: kABFirstNamePhoneticProperty,
+            error: ()
+        )
         print(firstName, firstName.phonetic(), separator: "->", terminator: " | ")
     }
 }
