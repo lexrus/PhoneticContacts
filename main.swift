@@ -23,7 +23,7 @@ extension String {
         let src = NSMutableString(string: self) as CFMutableString
         CFStringTransform(src, nil, kCFStringTransformMandarinLatin, false)
 
-        // Uncomment line below if you don't want the accents. E.g. NínHǎo to NinHao
+        // Transform NínHǎo to NinHao
         CFStringTransform(src, nil, kCFStringTransformStripCombiningMarks, false)
 
         let s = src as String
@@ -104,7 +104,7 @@ extension String {
         ]
 
         if let specialLastName = SpecialLastName[self] {
-            return specialLastName
+            return specialLastName.upcaseInitial()
         }
         return self
     }
