@@ -96,6 +96,8 @@ extension String {
             "詹": "zhan",
             "禚": "zhuo",
             "迮": "ze",
+            "沈": "shen",
+            "沉": "shen",
             "尉迟": "yuchi",
             "长孙": "zhangsun",
             "中行": "zhonghang",
