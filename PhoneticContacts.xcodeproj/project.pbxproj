@@ -83,6 +83,11 @@
 				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "Lex Tang";
+				TargetAttributes = {
+					D7E7F1C81661184E008C3C32 = {
+						LastSwiftMigration = 0820;
+					};
+				};
 			};
 			buildConfigurationList = D7E7F1C31661184E008C3C32 /* Build configuration list for PBXProject "PhoneticContacts" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -173,6 +178,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -182,6 +188,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

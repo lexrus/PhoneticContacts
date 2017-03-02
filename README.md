@@ -1,6 +1,6 @@
 # PhoneticContacts
 
-![Language](https://img.shields.io/badge/Language-Swift%202-orange.svg)
+![Language](https://img.shields.io/badge/Language-Swift%203-orange.svg)
 [![Git](https://img.shields.io/badge/GitHub-lexrus-blue.svg?style=flat)](https://github.com/lexrus)
 [![Twitter](https://img.shields.io/badge/Twitter-@lexrus-blue.svg?style=flat)](http://twitter.com/lexrus)
 
@@ -14,6 +14,6 @@
 另外，有些汉字姓氏的读音比较特殊 (如「曾」作为姓时读作 zeng)。
 我在网上随便找了一些，做了替换的处理，可能不全，欢迎补充。
 
-请在 Xcode 7.2+ 里打开此项目，command + r 运行后联系人就有拼音属性了。
+请在 Xcode 8+ 里打开此项目，command + r 运行后联系人就有拼音属性了。
 过不了多久(看脸)，这些更新后的联系人会通过 iCloud 同步到 iPhone。
 

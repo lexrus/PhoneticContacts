@@ -14,7 +14,7 @@ extension String {
     func upcaseInitial() -> String {
         var chars = characters
         if let firstChar = chars.popFirst().map({ String($0) }) {
-            return String(firstChar).uppercaseString + String(chars)
+            return String(firstChar).uppercased() + String(chars)
         }
         return ""
     }
@@ -29,9 +29,9 @@ extension String {
         let s = src as String
         if s != self {
             return s
-                .componentsSeparatedByString(" ")
+                .components(separatedBy: " ")
                 .map { $0.upcaseInitial() }
-                .reduce("", combine: +)
+                .reduce("", +)
         }
 
         return self
@@ -119,7 +119,7 @@ ab.people().forEach {
         return
     }
 
-    if let lastName = people.valueForProperty(kABLastNameProperty) as? String {
+    if let lastName = people.value(forProperty: kABLastNameProperty) as? String {
         _ = try? people.setValue(
             lastName.phoneticLast().phonetic(),
             forProperty: kABLastNamePhoneticProperty,
@@ -128,7 +128,7 @@ ab.people().forEach {
         print(lastName, lastName.phoneticLast().phonetic(), separator: "->", terminator: ", ")
     }
 
-    if let firstName = people.valueForProperty(kABFirstNameProperty) as? String {
+    if let firstName = people.value(forProperty: kABFirstNameProperty) as? String {
         _ = try? people.setValue(
             firstName.phonetic(),
             forProperty: kABFirstNamePhoneticProperty,
