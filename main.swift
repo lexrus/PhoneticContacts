@@ -12,11 +12,8 @@ import AddressBook
 extension String {
 
     func upcaseInitial() -> String {
-        var chars = characters
-        if let firstChar = chars.popFirst().map({ String($0) }) {
-            return String(firstChar).uppercased() + String(chars)
-        }
-        return ""
+        guard let firstChar = first else { return "" }
+        return String(firstChar).uppercased() + dropFirst()
     }
 
     func phonetic() -> String {
